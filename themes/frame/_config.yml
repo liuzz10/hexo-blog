@@ -29,9 +29,9 @@ date_format: MMM D, YYYY
 
 # profile
 profile:
-  title: Hi, this is Frame. 
-  body: A minimal, elegant hexo theme.
-  image: /profile_cover.png
+  title: Hi, this is Joy Liu. 
+  body: A personal blog about programming and interesting books.
+  image: 
 
   links:
     Home: /
@@ -40,11 +40,11 @@ profile:
 # footer
 footer:
   copyright_info:
-    enable: false
-    author:
+    enable: true
+    author: Zhuozhuo Liu
 
   powered_by: # Powered by Hexo & Frame
-    enable: true
+    enable: false
 
   other_info:
     enable: false
