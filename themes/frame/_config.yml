@@ -31,20 +31,20 @@ date_format: MMM D, YYYY
 profile:
   title: Hi, this is Joy Liu. 
   body: A personal blog about programming and interesting books.
-  image: 
+  image: /flower.jpeg
 
   links:
-    Home: /
-    Blogs: /archives/
+    # Home: /
+    Archive / Blogs: /archives/
 
 # footer
 footer:
   copyright_info:
     enable: true
-    author: Zhuozhuo Liu
+    author: © 2021 Zhuozhuo Liu
 
   powered_by: # Powered by Hexo & Frame
-    enable: false
+    enable: true
 
   other_info:
     enable: false
