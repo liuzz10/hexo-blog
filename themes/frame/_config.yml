@@ -3,7 +3,7 @@
 language: en
 
 # header
-site_brand_name: Joy's blog
+site_brand_name: stawberrybfs's blog
 
 logo_image:
   enable: false
@@ -68,6 +68,6 @@ valine: # valine setup guide: https://valine.js.org/quickstart.html
   meta: ['nick', 'mail']
 
 disqus: # disqus setup guide: https://help.disqus.com/en/articles/1717056-publisher-quick-start-guide
-  enable: false
-  disqus_url: # your diqsuq url or shortname
+  enable: true
+  disqus_url: joyblogs
   language: 'en'
