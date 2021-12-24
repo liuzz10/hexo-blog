@@ -33,9 +33,9 @@ def subsets(self, nums: List[int]) -> List[List[int]]:
 
 Note: I'd not call this approach as backtracking because by using backtracking we usually have to prune partial solutions according to the definition on [wiki](https://en.wikipedia.org/wiki/Backtracking#:~:text=Backtracking%20is%20a%20general%20algorithm,possibly%20be%20completed%20to%20a). In this problem, it doesn't prune any partial solutions - it just simply includes all combinations.
 
-# Origin
+# Motivation
 
-Why came up with this solution? Actually it's not very hard to think of if you have considered how many possible subsets in total. Given a list of length of n, the answer is 2^n. Because for every element, there are two options: to include it in the subset or not. Therefore there will be in total 2*2 *...* 2*2 subsets.
+Why came up with this solution? Actually it's not very hard to think of if you have considered how many possible subsets in total. Given a list of length of n, the answer is 2^n. Because for every element, there are two options: to include it in the subset or not. Therefore there will be in total `2*2*...*2*2` subsets.
 
 When we see the pattern like 2^n, we think of binary tree/dfs/backtracking...whatever you call it, and every single leave will be a unique subset. The left-most leaf is when we include all numbers so it will be a full list, while the right-most leaf is when we exclude all numbers so it will be an empty list.
 
