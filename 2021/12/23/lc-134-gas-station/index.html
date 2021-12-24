@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>LC-134 Gas Station | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+
+
+<script src='https://unpkg.com/valine@1.4.16/dist/Valine.min.js'></script>
+
+
+
+  <meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    <div class="mask-border">
+    </div>
+
+    <div class="wrapper">
+
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            strawberrybfs&#39;s blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/categories/gallery/">Gallery</a>
+              </li> 
+                   
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container">
+          <article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+        </div>
+        <div class="post-title">
+            
+            
+                LC-134 Gas Station
+            
+            
+        </div>
+        <span class="post-date">
+            Dec 23, 2021
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/">Puzzle link</a></p>
+<p><img src="LC134-question.png"></p>
+<p>There are N gas stations along a circular route, where the amount of gas at station i is gas[i].</p>
+<p>You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.</p>
+<p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
+<p>Note: If there exists a solution, it is guaranteed to be unique. Both input arrays are non-empty and have the same length. Each element in the input arrays is a non-negative integer.</p>
+<p><strong>Author’s note:</strong> This question may use greedy algorithm which involves mathematical proofs.</p>
+<h1 id="Idea-1-Brute-Force"><a href="#Idea-1-Brute-Force" class="headerlink" title="Idea 1: Brute Force"></a>Idea 1: Brute Force</h1><p>We will have to start from every station and check if we have enough gas to go to the next station with <code>remainGas = remainGas + gas[station] - cost[station]</code>. If not <code>remainGas &lt; 0</code>, we break and move the starting point to the next station and keep checking until we find a starting point that sustains us to travel around.</p>
+<h2 id="Time-cost"><a href="#Time-cost" class="headerlink" title="Time cost"></a>Time cost</h2><p>O(n). Because we have two pointers (both traverse O(n) times) and one is nested in the other one. </p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n = gas.length;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">            <span class="keyword">int</span> remainGas = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">boolean</span> isSuccess = <span class="keyword">true</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> j = i; j &lt; n + i; j++) &#123;</span><br><span class="line">                <span class="keyword">int</span> station = (j+n) % n;</span><br><span class="line">                remainGas += gas[station] - cost[station];</span><br><span class="line">                <span class="keyword">if</span> (remainGas &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                    isSuccess = <span class="keyword">false</span>;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (isSuccess) &#123;</span><br><span class="line">                <span class="keyword">return</span> i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Idea-2-One-pass"><a href="#Idea-2-One-pass" class="headerlink" title="Idea 2: One pass"></a>Idea 2: One pass</h1><p>After coming up with brute force, you always ask yourself, are all procedures or calculations necessary? The answer is NO. The solution depends on 3 properties. Every property saves us a bunch of work compared to brute force.</p>
+<h2 id="Code-1"><a href="#Code-1" class="headerlink" title="Code"></a>Code</h2><p>Let’s reveal the algorithm first and then analyze properties and how they help with simplifying the procedure.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">canCompleteCircuit</span><span class="params">(<span class="keyword">int</span>[] gas, <span class="keyword">int</span>[] cost)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> remainGas = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> totalGas = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> totalCost = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> start = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">// Property 1: We compare total gas and total cost. </span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gas.length; i++) &#123;</span><br><span class="line">            totalGas += gas[i];</span><br><span class="line">            totalCost += cost[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// If total gas doesn&#x27;t cover total cost, it doesn&#x27;t work out and we return -1.</span></span><br><span class="line">        <span class="keyword">if</span> (totalGas &lt; totalCost) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// If total gas can cover the cost, we set up a pointer i starting from #1 and traverse. Property 3: no loop around, i &lt; gas.length.</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gas.length; i++) &#123;</span><br><span class="line">            <span class="comment">// Arriving at each station, we calculate the remaining gas</span></span><br><span class="line">            remainGas += gas[i] - cost[i];</span><br><span class="line">            <span class="comment">// If the remainGas &lt; 0, that means it&#x27;s impossible to arrive at this station - it will be an unsuccessful route.</span></span><br><span class="line">            <span class="keyword">if</span> (remainGas &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">// Property 2: we set the remaining gas to 0, and move the starting point to the next station and test again until we find a successful route (remainGas &gt;=0 at every station).</span></span><br><span class="line">                start = i+<span class="number">1</span>;</span><br><span class="line">                remainGas = <span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> start;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Property-1-If-total-gas-lt-total-cost-a-successful-route-doesn’t-exist"><a href="#Property-1-If-total-gas-lt-total-cost-a-successful-route-doesn’t-exist" class="headerlink" title="Property 1. If total gas &lt; total cost, a successful route doesn’t exist."></a>Property 1. If total gas &lt; total cost, a successful route doesn’t exist.</h2><p>This is obvious.</p>
+<p>Question: How to prove that if total gas &gt;= total cost, there must be a successful route?</p>
+<h3 id="Simplify-the-code"><a href="#Simplify-the-code" class="headerlink" title="Simplify the code"></a>Simplify the code</h3><p>With this property, we can check at the very beginning (or at the end). </p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gas.length; i++) &#123;</span><br><span class="line">            totalGas += gas[i];</span><br><span class="line">            totalCost += cost[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// If total gas doesn&#x27;t cover total cost, it doesn&#x27;t work out and we return -1.</span></span><br><span class="line">        <span class="keyword">if</span> (totalGas &lt; totalCost) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Property-2-If-path-i-gt-j-failed-it-will-also-fail-if-we-start-with-any-station-between-i-and-j"><a href="#Property-2-If-path-i-gt-j-failed-it-will-also-fail-if-we-start-with-any-station-between-i-and-j" class="headerlink" title="Property 2. If path(#i -&gt; #j) failed, it will also fail if we start with any station between #i and #j."></a>Property 2. If path(#i -&gt; #j) failed, it will also fail if we start with any station between #i and #j.</h2><p><img src="LC134-p2.png"></p>
+<p>Consider this graph as an example: if we start from #1: </p>
+<ul>
+<li>path(#1 -&gt; #3) is successful</li>
+<li>path(#3 -&gt; #4) fails</li>
+</ul>
+<p>With the brute force idea, if #1 doesn’t work out we have to start with #2 to check. Is it necessary? No. We don’t have to check from #2 because we’ve known that it won’t pass #4.</p>
+<p><img src="LC134-p2-2.png"></p>
+<p>Why? Starting from #2 can be equal to starting from #1, adding 1 gas at #1 (originally gas = 2 at #1). That equals to, #1 doesn’t provide us any benefits. </p>
+<p>We knew that path(#1 -&gt; #4) fails. That’s being said, even if #1 provides us some extra benefits to let us have gas remaining when arriving at #2, that gas doesn’t sustain us to pass #4. </p>
+<p>Therefore, path(#2 -&gt; #4) wouldn’t work. We can prove in contradiction. If it works, path(#1 -&gt; #4) should work as well because #1 may provide extra gas for the trip which contradicts with the assumption “path(#1 -&gt; #4) fails”.</p>
+<h3 id="Simplify-the-code-1"><a href="#Simplify-the-code-1" class="headerlink" title="Simplify the code"></a>Simplify the code</h3><p>With this property, we further conclude that, once we find a failed path(#i -&gt; #j), we can set up the starting point from the next point #j+1. In the code, <code>start = i+1</code>.</p>
+<h2 id="Property-3-With-enough-total-gas-if-there’s-a-successful-path-X-gt-last-station-starting-point-X-must-be-valid-no-need-to-loop-back-to-check"><a href="#Property-3-With-enough-total-gas-if-there’s-a-successful-path-X-gt-last-station-starting-point-X-must-be-valid-no-need-to-loop-back-to-check" class="headerlink" title="Property 3. With enough total gas, if there’s a successful path(#X -&gt; #last station), starting point #X must be valid (no need to loop back to check)."></a>Property 3. With enough total gas, if there’s a successful path(#X -&gt; #last station), starting point #X must be valid (no need to loop back to check).</h2><p>That’s being said, if we find a starting point X that can reach the last station, we don’t have to loop back to check stations before X. The gas will always be enough to cover the rest trip (in this example, #5 is the last station but may not be the last one in the route because the starting point is not always #1).</p>
+<p>It sounds unbelievable. Let’s prove. In this graph, the whole route is divided by green section path(#X -&gt; #n) and blue section path(#n -&gt; #X-1). We want to prove that if the green section works, the blue section must work.</p>
+<p><img src="LC134-p3.png"></p>
+<h3 id="Notations"><a href="#Notations" class="headerlink" title="Notations"></a>Notations</h3><ul>
+<li>#X = starting point</li>
+<li>#n = last station in alphabetics</li>
+<li>k = the remaining gas after going path(#X -&gt; #n) (before adding gas from #n)</li>
+</ul>
+<h3 id="Proof"><a href="#Proof" class="headerlink" title="Proof"></a>Proof</h3><ul>
+<li><p>Total gas = $\sum_{i=X}^{n-1} gas[i]$ + $\sum_{i=n}^{X-1} gas[i]$</p>
+</li>
+<li><p>Total cost = $\sum_{i=X}^{n-1} cost[i]$ + $\sum_{i=n}^{X-1} gas[i]$</p>
+</li>
+<li><p>Since total gas - total cost &gt;=0,</p>
+<p>  $\sum_{i=X}^{n-1} gas[i]$ + $\sum_{i=n}^{X-1} gas[i]$ - $\sum_{i=X}^{n-1} cost[i]$ - $\sum_{i=n}^{X-1} cost[i]$ &gt;= 0</p>
+</li>
+<li><p>After transposition,</p>
+<p>  ( $\sum_{i=X}^{n-1} gas[i]$ - $\sum_{i=X}^{n-1} cost[i]$ ) + $\sum_{i=n}^{X-1} gas[i]$ - $\sum_{i=n}^{X-1} cost[i]$ &gt;= 0</p>
+</li>
+<li><p>Since k = ( $\sum_{i=X}^{n-1} gas[i]$ - $\sum_{i=X}^{n-1} cost[i]$ ),</p>
+<p>  k + $\sum_{i=n}^{X-1} gas[i]$ - $\sum_{i=n}^{X-1} cost[i]$ &gt;= 0</p>
+<p>  so,</p>
+<p>  k + $\sum_{i=n}^{X-1} gas[i]$ &gt;= $\sum_{i=n}^{X-1} cost[i]$</p>
+</li>
+</ul>
+<p>(If the above doesn’t format, see the image below.)</p>
+<p><img src="LC134-proof-sigma.png"></p>
+<p>This formula shows that the sum of x remaining gas at #n and the gas being added must be able to cover the cost during the blue section. Therefore, as long as the green section works, the blue section must work.</p>
+<h3 id="Simplify-the-code-2"><a href="#Simplify-the-code-2" class="headerlink" title="Simplify the code"></a>Simplify the code</h3><p>With this property, we don’t have to circle around and check the stations in front of the starting point. So the loop is <code>for (int i = 0; i &lt; gas.length; i++)</code>.</p>
+<p>Note: This article was originally published <a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/discuss/805989/brute-force-one-pass-step-by-step-explanationwith-proof-graph-and-code-beginners-friendly">here</a></p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2021/12/22/2022-books-to-read/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            
+            var disqus_config = function () {
+                this.page.url = 'http://liuzz10.github.io/2021/12/23/lc-134-gas-station/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '2021/12/23/lc-134-gas-station/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.language = 'en'
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'joyblogs';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>   
+     
+    
+    
+
+</div>
+     
+  
+</article>
+        </div>
+      </div>
+      
+      <div class="footer">
+    <div class="flex-container">
+        <div class="footer-text">
+            
+            
+                © 2021 Zhuozhuo Liu | 
+            
+            
+                Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a> & <a target="_blank" rel="noopener" href="https://github.com/zoeingwingkei/frame/">Frame</a>
+                
+        </div>
+    </div>
+</div>
+
+    </div>
+
+  </body>
+</html>

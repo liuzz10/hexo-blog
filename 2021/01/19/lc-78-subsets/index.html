@@ -150,7 +150,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">subsets</span>(<span class="params">self, nums: <span class="type">List</span>[<span class="built_in">int</span>]</span>) -&gt; <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">int</span>]]:</span></span><br><span class="line">    res = []</span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">dfs</span>(<span class="params">index, path</span>):</span></span><br><span class="line">        <span class="keyword">if</span> index == <span class="built_in">len</span>(nums):</span><br><span class="line">            res.append(path)</span><br><span class="line">            <span class="keyword">return</span></span><br><span class="line">        dfs(index + <span class="number">1</span>, path + [nums[index]]) <span class="comment"># with nums[index]</span></span><br><span class="line">        dfs(index + <span class="number">1</span>, path) <span class="comment"># without nums[index]</span></span><br><span class="line"></span><br><span class="line">    dfs(<span class="number">0</span>, [])</span><br><span class="line">    <span class="keyword">return</span> res</span><br></pre></td></tr></table></figure>
 
 <p>Note: I’d not call this approach as backtracking because by using backtracking we usually have to prune partial solutions according to the definition on <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Backtracking#:~:text=Backtracking%20is%20a%20general%20algorithm,possibly%20be%20completed%20to%20a">wiki</a>. In this problem, it doesn’t prune any partial solutions - it just simply includes all combinations.</p>
-<h1 id="Origin"><a href="#Origin" class="headerlink" title="Origin"></a>Origin</h1><p>Why came up with this solution? Actually it’s not very hard to think of if you have considered how many possible subsets in total. Given a list of length of n, the answer is 2^n. Because for every element, there are two options: to include it in the subset or not. Therefore there will be in total 2<em>2 <em>…</em> 2</em>2 subsets.</p>
+<h1 id="Motivation"><a href="#Motivation" class="headerlink" title="Motivation"></a>Motivation</h1><p>Why came up with this solution? Actually it’s not very hard to think of if you have considered how many possible subsets in total. Given a list of length of n, the answer is 2^n. Because for every element, there are two options: to include it in the subset or not. Therefore there will be in total <code>2*2*...*2*2</code> subsets.</p>
 <p>When we see the pattern like 2^n, we think of binary tree/dfs/backtracking…whatever you call it, and every single leave will be a unique subset. The left-most leaf is when we include all numbers so it will be a full list, while the right-most leaf is when we exclude all numbers so it will be an empty list.</p>
 <p>The patter of the binary tree reminds us to use dfs. That’s how I got started at least.</p>
 <h1 id="Another-way-to-code"><a href="#Another-way-to-code" class="headerlink" title="Another way to code"></a>Another way to code</h1><p>Simply replace <code>return</code> with an <code>if...else...</code> statement. By using either <code>return</code> or using <code>else</code>, we garentee that it will be able to terminate the recursion. If <code>return</code> or <code>else</code> is missing, it will call <code>dfs()</code> forever and never ends, which is bad.</p>
@@ -173,11 +173,16 @@
            
                 <div class="icon arrow-left"></div>
                 <div class="post-link">
-                    <a href="/2021/01/19/lc-11-container/">Prev</a>
+                    <a href="/2021/03/03/lc-121-best-time-to-buy-and-sell-stock/">Prev</a>
                 </div>
             
         </div>
         <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2021/01/10/lc-11-container/">Next</a>  
+                </div>  
             
         </div>
     </nav>

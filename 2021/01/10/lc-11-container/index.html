@@ -130,7 +130,7 @@
             
         </div>
         <span class="post-date">
-            Jan 19, 2021
+            Jan 10, 2021
         </span>
     </div>
     <div class="post-img">
@@ -142,7 +142,7 @@
     <div class="post-content">
     <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/">Puzzle link</a></p>
 <p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p><img src="/2021/01/19/lc-11-container/question.jpg" alt="problem"></p>
+<p><img src="/2021/01/10/lc-11-container/question.jpg" alt="problem"></p>
 <h1 id="Idea-1-Brute-force"><a href="#Idea-1-Brute-force" class="headerlink" title="Idea 1: Brute force"></a>Idea 1: Brute force</h1><ol>
 <li>Calculate the area of all possible containers S(i, j). Here, S(i, j)=min(i, j)*(j-i).</li>
 <li>We need to use two pointers: i, j. When i=1，j moves from the integer next to i, which is 2, to the end, which is n. Calculate S(i, j)。Then, i moves to the next integer which is 2. j starts from i+1 to n. Repeatedly doing this until i reach n-1.</li>
@@ -196,16 +196,11 @@
            
                 <div class="icon arrow-left"></div>
                 <div class="post-link">
-                    <a href="/2021/12/21/doctrine-of-repentance-1/">Prev</a>
+                    <a href="/2021/01/19/lc-78-subsets/">Prev</a>
                 </div>
             
         </div>
         <div class="next-item">
-            
-                <div class="icon arrow-right"></div>
-                <div class="post-link">
-                  <a href="/2021/01/19/lc-78-subsets/">Next</a>  
-                </div>  
             
         </div>
     </nav>
@@ -224,8 +219,8 @@
             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
             
             var disqus_config = function () {
-                this.page.url = 'http://liuzz10.github.io/2021/01/19/lc-11-container/';  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = '2021/01/19/lc-11-container/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.page.url = 'http://liuzz10.github.io/2021/01/10/lc-11-container/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '2021/01/10/lc-11-container/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                 this.language = 'en'
             };
             
