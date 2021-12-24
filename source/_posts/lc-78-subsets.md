@@ -9,7 +9,7 @@ tags:
 
 [Puzzle link](https://leetcode.com/problems/subsets/)
 
-# TL;DR:
+# TL;DR
 
 The idea is that, when we are looking at each number, we have 2 options: 
 * include it, or
@@ -31,7 +31,7 @@ def subsets(self, nums: List[int]) -> List[List[int]]:
     return res
 ```
 
-Note: I'd not call this approach as backtracking because by using backtracking we usually have to prune partial solutions accroding to the definition on [wiki](https://en.wikipedia.org/wiki/Backtracking#:~:text=Backtracking%20is%20a%20general%20algorithm,possibly%20be%20completed%20to%20a). In this problem, it doesn't prune any partial solutions - it just simply includes all combinations.
+Note: I'd not call this approach as backtracking because by using backtracking we usually have to prune partial solutions according to the definition on [wiki](https://en.wikipedia.org/wiki/Backtracking#:~:text=Backtracking%20is%20a%20general%20algorithm,possibly%20be%20completed%20to%20a). In this problem, it doesn't prune any partial solutions - it just simply includes all combinations.
 
 # Origin
 

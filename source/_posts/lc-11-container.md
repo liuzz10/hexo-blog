@@ -31,7 +31,7 @@ I will reveal the solution first and then analyze and prove it.
 5. Always move the shorter one to the next integer (move towards the center: i moves right-wards, j moves left-wards) and hold the longer one in place to form the new container.
 6. We also need a variable to record the max area among all possible S. It’s easy. We set up and initialize maxArea=-1. If we find any S>max, we assign the value of S to maxArea. Otherwise, we don’t change the value of maxArea so that maxArea always stands for the max value among S.
 
-# Explanation to the algorithm
+# Explanation 
 
 1. This graph pictures the initialization stage: i < j. From the perspective of i=1, its best choice is j=n among all integers from j=2 to j=n. Why? Because the height of the container that i make up is at most i's length: if i=1 meets a longer one, the height will still be limited by i’s length; if i meets a shorter one, the height will be even worse. So, among all integers, i’s best strategy is to find the furthest integer, which is n.
 2. If you understand the above, you understand 3 general properties for any pair(i, j) :
