@@ -142,7 +142,7 @@
     <div class="post-content">
     <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximal-square/">Puzzle link</a></p>
 <p>Given an m x n binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.</p>
-<h1 id="Idea-amp-Explanation"><a href="#Idea-amp-Explanation" class="headerlink" title="Idea &amp; Explanation"></a>Idea &amp; Explanation</h1><p><strong>dp[][] table doesn’t have to contain the direct result</strong></p>
+<h1 id="Idea-amp-Explanation"><a href="#Idea-amp-Explanation" class="headerlink" title="Idea &amp; Explanation"></a>Idea &amp; Explanation</h1><p><strong>What I learnt: dp[][] table doesn’t have to contain the direct result.</strong></p>
 <p>Normally in a dp problem, the dp table contains everything we need so we can simply return the value in the corner (e.g., <code>dp[m][n]</code>).</p>
 <p>Therefore, my first attempt is to generate a 2D table where each cell represents “the area of the largest squre up to this point”. For example, I managed to use <code>dp[i][j]</code> to represent the max area of the squre given an <code>i * j</code> matrix. In the end, I can just return <code>dp[m][n]</code> as the result.</p>
 <p>Sounds good. However, it added too much complexity. Why?</p>
