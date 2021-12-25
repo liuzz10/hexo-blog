@@ -150,7 +150,7 @@
 <p>This problem occurs frequently in the real world. For example, to select 1000 words from a super thick dictionary whose total number of words is not known. To select 300 samples from an ongoing data stream and we don’t know when the stream will end. Therefore, optimizing this problem will help with solving these problems.</p>
 <h1 id="Reservoir-Algorithms"><a href="#Reservoir-Algorithms" class="headerlink" title="Reservoir Algorithms"></a>Reservoir Algorithms</h1><p>Reservoir algorithms are the solution to the above random sampling problem which needs to be finished in one pass. In other words, the time complexity is O(N). A “reservoir” is created to temporarily store candidates of samples that we should only keep track of. The size of the reservoir can be larger than n or equals to n.</p>
 <p>Algorithm R, X, and Y all major players in reservoir algorithms. The following table is a brief comparison on their performance.</p>
-<p><img src="table.jpg" alt="comparison table"></p>
+<p><img src="table.png" alt="comparison table"></p>
 <h1 id="Algorithm-R"><a href="#Algorithm-R" class="headerlink" title="Algorithm R"></a>Algorithm R</h1><p>Both the algorithm itself and proof are pretty elegant. I will first describe the algorithm and then give a proof about the correctness of it.</p>
 <h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>When we are processing the kth number K:</p>
 <ul>
