@@ -35,7 +35,7 @@ When we are processing the kth number K:
     * If Rn , which means that there must be an corresponding Rth number in the reservoir of n numbers. Then we replace the Rth number with K.
 * Process the next number with the same steps as above until reaching N.
 
-Time complexity. The time complexity is O(N) because we will need to scan every number for exactly one time and it takes constant time to process each number. 
+**Time complexity.** The time complexity is O(N) because we will need to scan every number for exactly one time and it takes constant time to process each number. 
 
 ## Example
 
@@ -153,7 +153,7 @@ Algorithm Y shares the same idea with Algorithm X in terms of the goal of genera
 
 (i+1-n)(i+2-n)···(i+s+1-n)(i+1)/(i+2)···(i+s+1)$\approx$ 1-U
 
-Time complexity. With the help of Newton’s method, this is faster than sequentially searching for an s. It converges to get s in O(1+loglog$\phi$)iterations. Therefore the average running time would be O(n^2*(1+log(N/n)loglog(N/n)))on which the author provided a wonderful proof.
+**Time complexity.** With the help of Newton’s method, this is faster than sequentially searching for an s. It converges to get s in O(1+loglog$\phi$)iterations. Therefore the average running time would be O(n^2*(1+log(N/n)loglog(N/n)))on which the author provided a wonderful proof.
 
 # Summary
 The author also developed a faster Algorithm Z in the end but I will not discuss it in this article since it’s faster than Algorithm Y  by a polynomial factor (it’s great, but...let’s focus on Y). A big jump is from Algorithm R to Algorithm Y with:
