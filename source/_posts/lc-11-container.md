@@ -51,4 +51,5 @@ I will reveal the solution first and then analyze and prove it.
     * In sum, we eliminate m=(n-2)+(n-3)+...+2+1 unnecessary comparisons from C(n, 2)=n*(n-1)/2. The actual comparisons that we implemented are C(n, 2)-m which is n-1.
 5. Another way to interpret this T(n)=n-1 is that, we have implemented n-1 iterations. That means, we have calculated the area for n-1 containers. Why? Think about an easy scenario when n is the longest line among all. Then the iterations go from (1, n) to (n-1, n) because j=n never changes its place. In this scenario, we move i from 1 to n-1 so there are n-1 iterations in total.
 
-Reference: https://leimao.github.io/blog/Proof-Container-With-Most-Water-Problem/
+**Reference**
+https://leimao.github.io/blog/Proof-Container-With-Most-Water-Problem/

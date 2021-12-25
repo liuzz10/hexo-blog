@@ -91,3 +91,5 @@ public class Solution extends Relation {
     }
 }
 ```
+
+Note: This article was originally published [here](https://medium.com/@joylovemercy/277-find-the-celebrity-linear-comparison-o-n-step-by-step-explanation-w-graph-8928230c6e)
