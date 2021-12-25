@@ -165,7 +165,7 @@
 </li>
 <li>Process the next number with the same steps as above until reaching N.</li>
 </ul>
-<p>Time complexity. The time complexity is O(N) because we will need to scan every number for exactly one time and it takes constant time to process each number. </p>
+<p><strong>Time complexity.</strong> The time complexity is O(N) because we will need to scan every number for exactly one time and it takes constant time to process each number. </p>
 <h2 id="Example"><a href="#Example" class="headerlink" title="Example"></a>Example</h2><p>Given an array [1, 2, 3, 4…], we are selecting a random sample of size 3. So in this example n = 2.</p>
 <p>When we are processing 1 and 2, we can simply place numbers into the reservoir. If the streaming ends at 2, each number will have the same probability of 1 to be selected.</p>
 <p>The reservoir is [1, 2] now. When we are processing 3, we will calculate a random number R from [1, 3]. If R is 1, we will replace 1 with 3 so that the reservoir will be [3, 2]. In this case, the probability of 3 being placed to the reservoir is 2/3. The probability of 1 or 2 being kept in the reservoir is 1 - 2/3 * 1/2 = 2/3 which is the same. </p>
@@ -244,7 +244,7 @@
 <p><strong>Time complexity.</strong> It’s faster than Algorithm R since it generates the random number only one time after the generation of $\phi$, compared to calling $\phi$ times after the generation of $\phi$ in Algorithm R. However, the time complexity of Algorithm X is O(N)in average because the sequential search takes O($\phi$+1)time.</p>
 <h2 id="Algorithm-Y"><a href="#Algorithm-Y" class="headerlink" title="Algorithm Y"></a>Algorithm Y</h2><p>Algorithm Y shares the same idea with Algorithm X in terms of the goal of generating how many numbers to skip. It uses Newton’s interpolation method to solve inequation (1.1) in order to find the minimum s. I will not give the detailed proof on this method here. The idea is to turn the inequation (1.1) to a new equation as below and find the “approximate root” of equation,</p>
 <p>(i+1-n)(i+2-n)···(i+s+1-n)(i+1)/(i+2)···(i+s+1)$\approx$ 1-U</p>
-<p>Time complexity. With the help of Newton’s method, this is faster than sequentially searching for an s. It converges to get s in O(1+loglog$\phi$)iterations. Therefore the average running time would be O(n^2*(1+log(N/n)loglog(N/n)))on which the author provided a wonderful proof.</p>
+<p><strong>Time complexity.</strong> With the help of Newton’s method, this is faster than sequentially searching for an s. It converges to get s in O(1+loglog$\phi$)iterations. Therefore the average running time would be O(n^2*(1+log(N/n)loglog(N/n)))on which the author provided a wonderful proof.</p>
 <h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>The author also developed a faster Algorithm Z in the end but I will not discuss it in this article since it’s faster than Algorithm Y  by a polynomial factor (it’s great, but…let’s focus on Y). A big jump is from Algorithm R to Algorithm Y with:</p>
 <ul>
 <li>The idea of skipping numbers and,</li>
