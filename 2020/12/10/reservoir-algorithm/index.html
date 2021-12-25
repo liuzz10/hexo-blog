@@ -14,7 +14,7 @@
 
 
 
-<title>Reservoir Algorithm Explained (R, X and Y) | Hexo</title>
+<title>Reservoir Algorithm(R, X and Y) | Hexo</title>
 
 
 
@@ -44,13 +44,20 @@
 
 
 
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
 
 
 <script src='https://unpkg.com/valine@1.4.16/dist/Valine.min.js'></script>
 
 
 
-  <meta name="generator" content="Hexo 5.4.0"></head>
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
   <body>
     <div class="mask-border">
     </div>
@@ -119,7 +126,7 @@
         <div class="post-title">
             
             
-                Reservoir Algorithm Explained (R, X and Y)
+                Reservoir Algorithm(R, X and Y)
             
             
         </div>
@@ -164,7 +171,7 @@
 <p>The reservoir is [1, 2] now. When we are processing 3, we will calculate a random number R from [1, 3]. If R is 1, we will replace 1 with 3 so that the reservoir will be [3, 2]. In this case, the probability of 3 being placed to the reservoir is 2/3. The probability of 1 or 2 being kept in the reservoir is 1 - 2/3 * 1/2 = 2/3 which is the same. </p>
 <p>The reservoir is [3, 2] now. When we are processing 4, we will calculate a random number R from [1, 4]. If R is 2, we will replace 2 with 4 so that the reservoir will be [3, 4]. In this case, the probability of 4 being placed to the reservoir is 2/4. The probability of 3 or 2 being kept in the reservoir is 2/3 * (1 - 2/4 * 1/2) = 2/4 which is the same. </p>
 <p>It will keep the same pattern when we are processing 5, 6, 7…. I will provide a proof as follows.</p>
-<h2 id="Proof-by-induction"><a href="#Proof-by-induction" class="headerlink" title="Proof by induction"></a>Proof by induction</h2><p>Notation. when we are processing the ith number (to decide to include in the reservoir or not), we use the following notations to represent the event and probability:</p>
+<h2 id="Proof-by-induction"><a href="#Proof-by-induction" class="headerlink" title="Proof by induction"></a>Proof by induction</h2><p><strong>Notation.</strong> when we are processing the ith number (to decide to include in the reservoir or not), we use the following notations to represent the event and probability:</p>
 <ul>
 <li><p>Xi: a random variable that represents the event to include the ith number in the reservoir or not.</p>
 </li>
@@ -219,7 +226,34 @@
 <li>Randomly select a number in the reservoir and replace it with the next number (the “lucky” number).</li>
 <li>Repeat the above steps until the last number.</li>
 </ul>
-<p>How to calculate $\phi$(n, i)? We will need to get its cumulative distribution function F(s)=P(s), which is the probability to skip numbers less than or equals to s when we are on the ith number. That equals to the counterpart which is 1-P(&gt;s). What is P(&gt;s)? That is the probability if we skip more than s numbers so it’s the probability when all numbers from (i+1)th number to (i+1+s)th number are not selected. </p>
+<p>How to calculate $\phi$(n, i)? We will need to get its cumulative distribution function F(s)=P($\phi$&lt;=s), which is the probability to skip numbers less than or equals to s when we are on the ith number. That equals to the counterpart which is 1-P($\phi$&gt;s). What is P($\phi$&gt;s)? That is the probability if we skip more than s numbers so it’s the probability when all numbers from (i+1)th number to (i+1+s)th number are not selected. </p>
+<p>Therefore,<br>F(s)=P($\phi$&lt;=s)=1-P($\phi$&gt;s)<br>=1-(1-n/(i+1))(1-n/(i+2))···(1-n/(i+s+1))<br>=1-(i+1-n)(i+2-n)···(i+s+1-n)/(i+1)(i+2)···(i+s+1)<br>=1-(i+1-n)(i+2-n)···(i+s+1-n)/(i+1)(i+2)···(i+s+1)</p>
+<p>How to find s that satisfying the above function? We can make use of inverse transform sampling. Yes it will help us to randomly generate an s that satisfies the distribution.</p>
+<p>To do inverse transform sampling, we need an inverse function of F(s) which is F-1(U). Since $F(s) \in [0, 1]$, $U \in [0, 1]$as well. Therefore with a  randomly generated U we are able to find a specific s which satisfies the distribution F(s) and thus we find the minimized number of elements to skip.</p>
+<p>Therefore, we will only need to solve the following inequation where Uis randomly generated from[0, 1]:</p>
+<p>(i+1-n)(i+2-n)···(i+s+1-n)/(i+1)(i+2)···(i+s+1) &lt;= 1-U (1.1)</p>
+<p>where i, n, Uare all known and the goal is to get s. Since the left-hand side of the inequation is so complicated, we will need to think about how to solve the inequation. The key difference between X and Y is the way to solve the inequation. With the s generated, they share the same steps as I listed above. </p>
+<h2 id="Algorithm-X"><a href="#Algorithm-X" class="headerlink" title="Algorithm X"></a>Algorithm X</h2><p>To solve inequation (1.1), we can use a brute force solution Algorithm X. It finds s by sequentially search for the minimum s, trying out all values in an increasing order until reaching the critical value. Therefore, the whole procedure of Algorithm X is:</p>
+<ul>
+<li>Generate a random number $u \in [0, 1]$.</li>
+<li>Search sequentially for the minimum s &gt;= 0 such that F(s) &lt;= u.</li>
+<li>Skip s numbers.</li>
+<li>Randomly select a number in the reservoir and replace it with the next number (the “lucky” number).</li>
+<li>Repeat the above steps until the last number.</li>
+</ul>
+<p><strong>Time complexity.</strong> It’s faster than Algorithm R since it generates the random number only one time after the generation of $\phi$, compared to calling $\phi$ times after the generation of $\phi$ in Algorithm R. However, the time complexity of Algorithm X is O(N)in average because the sequential search takes O($\phi$+1)time.</p>
+<h2 id="Algorithm-Y"><a href="#Algorithm-Y" class="headerlink" title="Algorithm Y"></a>Algorithm Y</h2><p>Algorithm Y shares the same idea with Algorithm X in terms of the goal of generating how many numbers to skip. It uses Newton’s interpolation method to solve inequation (1.1) in order to find the minimum s. I will not give the detailed proof on this method here. The idea is to turn the inequation (1.1) to a new equation as below and find the “approximate root” of equation,</p>
+<p>(i+1-n)(i+2-n)···(i+s+1-n)(i+1)/(i+2)···(i+s+1)$\approx$ 1-U</p>
+<p>Time complexity. With the help of Newton’s method, this is faster than sequentially searching for an s. It converges to get s in O(1+loglog$\phi$)iterations. Therefore the average running time would be O(n^2*(1+log(N/n)loglog(N/n)))on which the author provided a wonderful proof.</p>
+<h1 id="Summary"><a href="#Summary" class="headerlink" title="Summary"></a>Summary</h1><p>The author also developed a faster Algorithm Z in the end but I will not discuss it in this article since it’s faster than Algorithm Y  by a polynomial factor (it’s great, but…let’s focus on Y). A big jump is from Algorithm R to Algorithm Y with:</p>
+<ul>
+<li>The idea of skipping numbers and,</li>
+<li>The usage of Newton’s interpolation method to find out the proper number of elements to skip during each iteration.</li>
+</ul>
+<p>To sum up, a series of reservoir algorithms such as R, X, and Y were developed and were optimized. All of them need to create a reservoir to temporarily store correct samples in case that it’s needed at any time (i.e., the date stream ends at any time and the reservoir will be able to provide the correct result correspondingly).</p>
+<p>R decides whether to place the number into the reservoir on EVERY number so the running time is not that optimal (but still decent!). X and Y only decide whose destiny is “in” so it skips those unlucky guys. Moreover, Y optimizes on the algorithm to find those lucky guys so the running time is the optimal among them.</p>
+<p><strong>Reference</strong><br>Vitter, J. S. (1985). Random sampling with a reservoir. ACM Transactions on Mathematical Software (TOMS), 11(1), 37-57.</p>
+<p><a target="_blank" rel="noopener" href="https://nbviewer.jupyter.org/github/jameslao/Algorithmic-Pearls/blob/master/ReservoirSampling.ipynb">https://nbviewer.jupyter.org/github/jameslao/Algorithmic-Pearls/blob/master/ReservoirSampling.ipynb</a></p>
 
 </div> 
 
