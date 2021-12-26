@@ -119,7 +119,7 @@ Algorithm X and Y optimize algorithm R in the times of calling the function that
 * Randomly select a number in the reservoir and replace it with the next number (the “lucky” number).
 * Repeat the above steps until the last number.
 
-How to calculate $\phi$(n, i)? We will need to get its cumulative distribution function F(s)=P($\phi$<=s), which is the probability to skip numbers less than or equals to s when we are on the ith number. That equals to the counterpart which is 1-P($\phi$>s). What is P($\phi$>s)? That is the probability if we skip more than s numbers so it’s the probability when all numbers from (i+1)th number to (i+1+s)th number are not selected. 
+How to calculate {% mathjax %} \phi(n, i) {% endmathjax %} ? We will need to get its cumulative distribution function F(s)=P($\phi$<=s), which is the probability to skip numbers less than or equals to s when we are on the ith number. That equals to the counterpart which is 1-P($\phi$>s). What is P($\phi$>s)? That is the probability if we skip more than s numbers so it’s the probability when all numbers from (i+1)th number to (i+1+s)th number are not selected. 
 
 Therefore,
 F(s)=P($\phi$<=s)=1-P($\phi$>s)
