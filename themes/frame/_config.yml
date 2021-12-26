@@ -45,7 +45,7 @@ footer:
     author: © 2021 Zhuozhuo Liu
 
   powered_by: # Powered by Hexo & Frame
-    enable: true
+    enable: false
 
   other_info:
     enable: false
@@ -70,5 +70,5 @@ valine: # valine setup guide: https://valine.js.org/quickstart.html
 
 disqus: # disqus setup guide: https://help.disqus.com/en/articles/1717056-publisher-quick-start-guide
   enable: true
-  disqus_url: joyblogs
+  disqus_url: 'https://joyblogs.disqus.com/embed.js'
   language: 'en'
