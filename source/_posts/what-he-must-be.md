@@ -1,5 +1,5 @@
 ---
-title: What he must be…if he wants to marry my daughter
+title: What He Must Be...If He Wants to Marry My Daughter
 date: 2021-08-03 07:07:07
 tags:
 - books
