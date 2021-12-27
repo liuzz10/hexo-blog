@@ -1,4 +1,3 @@
-
 # html lang
 language: en
 
@@ -12,15 +11,16 @@ logo_image:
 menu:
   Home: /
   Archive: /archives/
+  Tags: /tag/
   # Gallery: /categories/gallery/
 
 # stylesheets loaded in the <head>
 stylesheets:
-- /css/style.css
+  - /css/style.css
 
 # scripts loaded in the end of the body
 scripts:
-- /js/frame.js
+  - /js/frame.js
 
 # favicon
 favicon: /favicon.ico
@@ -29,9 +29,9 @@ date_format: MMM D, YYYY
 
 # profile
 profile:
-  title: Hi, this is Joy Liu. 
+  title: Hi, this is Joy Liu.
   body: A personal blog about programming and interesting books.
-  image: /flower.jpeg
+  image: /wheatfield.png
 
   links:
     # Home: /

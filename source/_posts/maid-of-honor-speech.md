@@ -16,7 +16,7 @@ For those who don’t know me, I’m Joy, I’m Emma’s classmate and best frie
 I was always impressed by Emma’s passion for education. Two years ago, Emma and I hosted a Summer camp for students who wanted to study abroad. She was so patient toward these students and would always stay up until midnight preparing for her classes.
 她对教育的热情让我印象特别深刻。在 2016 年的夏天，我们和其他几个小伙伴一起办一场夏令营。刘星当时教的是英语，她对工作特别认真负责。经常备课到深夜，还给学生单独辅导。
 
-Emma is the kindest and most understanding person I have ever met in my life. When we were at UPenn, we were both very poor. However, she always invited me to have dinner or lunch at her home. This was how I first met Qi.
+Emma is the kindest and most understanding person I have ever met in my life. When we were at UPenn, we were both very poor. However, she always invited me to have dinner or lunch at her home. This was how I first met Qi Liu.
 她对朋友特别仗义。那时我们是很穷的学生，但是她经常邀请我们去她家吃饭，我也是在她们家蹭饭的时候知道她有个男朋友刘琪。
 
 I’ve never seen two people that fit so well into each other’s lives as Emma and Qi. Emma is an amazing cook and Qi is an amazing dishwasher (because of his Chemistry major). They always consider each other’s feelings. They even share the same last name!
