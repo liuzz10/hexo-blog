@@ -20,7 +20,7 @@ Emma is the kindest and most understanding person I have ever met in my life. Wh
 她对朋友特别仗义。那时我们是很穷的学生，但是她经常邀请我们去她家吃饭，我也是在她们家蹭饭的时候知道她有个男朋友刘琪。
 
 I’ve never seen two people that fit so well into each other’s lives as Emma and Qi. Emma is an amazing cook and Qi is an amazing dishwasher (because of his Chemistry major). They always consider each other’s feelings. They even share the same last name!
-我觉得他们两个特别配，一个做饭做得很好，一个洗完洗的很好；他们一直在为对方着想；最重要的是，他们都姓刘。
+他们两个人特别配，刘星做饭做得很好，刘琪洗碗洗的很好（可能因为他是学化学的？）；他们一直在为对方着想；最重要的是，他们都姓刘！
 
 Emma, as the kind and generous person she is, was always dedicating a lot to her relationship with Qi. Including her Costco membership. As all couples know, a Costco membership means a LOT to a relationship.
 看得出来她对这段感情很认真，她是我们同学当中唯一一个有 costco membership 的人。
