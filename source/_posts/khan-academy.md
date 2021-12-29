@@ -1,5 +1,5 @@
 ---
-title: 在可汗学院实习期间的思考
+title: 可汗学院实习的体会
 date: 2016-12-20 07:07:07
 tags:
   - khan academy

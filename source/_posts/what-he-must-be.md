@@ -7,8 +7,8 @@ tags:
   - 中文
 ---
 
-> _Book: What He Must Be...If He Wants to Marry My Daughter_
-> _Author: Voddie Baucham_
+> Book: What He Must Be...If He Wants to Marry My Daughter
+> Author: Voddie Baucham
 
 ## 第一章：从代代传承的角度 Multigenerational vision
 

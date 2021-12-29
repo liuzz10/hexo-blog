@@ -6,9 +6,9 @@ tags:
   - 中文
 ---
 
-> _Book: Family worship 基督徒家庭敬拜_
-> _Author: Kerry Ptacek_
-> _Translation: 德静_
+> Book: Family worship 基督徒家庭敬拜
+> Author: Kerry Ptacek
+> Translation: 德静
 
 这本书填补了我在家庭敬拜方面的属灵盲区，因为大环境和家庭环境的关系，并没有家庭敬拜的体验。但是当我之前在看 Jay E. Adams《圣灵的劝诫》里面讲到“家庭会议桌”时，就很向往这种把家庭凝聚起来的方式。里面提到“每天晚上全家聚集一同谈论每日遇到的困难，很快会议桌就会成为希望的象征”。家庭敬拜也是如此，是全家人同心合一的象征。
 
