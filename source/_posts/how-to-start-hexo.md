@@ -6,13 +6,13 @@ tags:
   - programming
 ---
 
-Since Google Analytics(GA) changed the layout, some tutorials are too old to follow. So I'm writing a new one.
+Since Google Analytics(GA) changed the layout, some tutorials are too old to follow. So I'm writing an up-to-date one.
 
 # Prerequisites
 
 You should have installed Hexo and had the site deployed already (so you should have a site url).
 
-Not sure how to use Hexo and deploy to GitHub Pages? Follow this [instruction](https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39).
+Not sure how to use Hexo and deploy to GitHub Pages? Follow this [tutorial](https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39).
 
 # Instructions
 
@@ -32,7 +32,7 @@ Not sure how to use Hexo and deploy to GitHub Pages? Follow this [instruction](h
 
 ![hexo3](hexo3.jpg)
 
-## Secondly, let the site knows which GA is used for tracking.
+## Secondly, let the site know GA.
 
 1. Go to your Hexo code. Under your template's folder, find `layout.ejs`.
 

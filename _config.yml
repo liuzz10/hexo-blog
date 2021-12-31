@@ -105,5 +105,3 @@ deploy:
   type: git
   repo: git@github.com:liuzz10/liuzz10.github.io.git
   branch: master
-
-google_analytics: 297664227

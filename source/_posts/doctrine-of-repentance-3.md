@@ -8,6 +8,10 @@ tags:
   - 中文
 ---
 
+> Book: Doctrine of Repentance
+> Author: Thomas Watson
+> Translation: 赵中辉
+
 # 悔改的试炼与安慰
 
 ## 悔改的试炼
