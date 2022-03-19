@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GB7VQMP377"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-GB7VQMP377');
+    </script>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>Understanding sum(FP) and sum(FN) in the formula of micro-F1 score | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<script src='https://unpkg.com/valine@1.4.16/dist/Valine.min.js'></script>
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    <div class="mask-border"></div>
+
+    <div class="wrapper">
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Zhuozhuo&#39;s blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tags</a>
+              </li> 
+                   
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container"><article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/statistics/">
+                            statistics
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/course/">
+                            course
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                Understanding sum(FP) and sum(FN) in the formula of micro-F1 score
+            
+            
+        </div>
+        <span class="post-date">
+            Mar 18, 2022
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <p>In my presentation on a data mining class today, a peer mentioned a thoughtful question about the micro-F1 score (see figure 1) - <strong>the sum of FP and the sum of FN looks equal, are they always equal? If yes, why calculate twice?</strong></p>
+<p><img src="slide.png" alt="figure 1. A slide of my presentation explaining microaveraged F1 score"></p>
+<p>The question is interesting and here’s my thought after some research and thinking. I think it can be generalized to <strong>“for any confusion matrix, the sum of FP is equal of the sum of FN”</strong>. In other words,</p>
+<pre><code>sum(FP1,...,FPn) = sum(FN1,...,FNn) = sum(all) - sum(diagonals)
+</code></pre>
+<p>It’s easy to prove it mathematically, but how to understand the equality? An intuitive way thinking about it is that, <strong>since they are all False, a FP of something is the FN of another thing.</strong> For example, for an orange that’s falsely predicted as an apple, it contributes both to the FP of class Apple and to the FN of class Orange. So for every False prediction, it will contribute to the sum of FP and the sum of FN at the same time. Therefore, the sum should always be the same.</p>
+<p>As a result, you might also find the following equation is true. That’s why micro-F1 is usually mentioned alone comparing to macro-F1 which usually mentioned together with macro-precision and macro-recall.</p>
+<pre><code>micro-F1 = accuracy = micro-precision = micro-recall
+</code></pre>
+<p>But why both terms appear in the following expression of micro-F1? I’m not sure the actual reason behind. From my perspective, I think although values are the same, their meaning are different. I don’t think we have to calculate it twice but they appear in the expression probably since they have their own meaning and, moreover, can be corresponding to the single F1 score which can be expressed by TP, FP and FN as well. This is my guess. I think at the implementation-level we probably could just calculate it once and reuse that number.</p>
+<p>Here are some readings that may be helpful:</p>
+<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/multi-class-metrics-made-simple-part-ii-the-f1-score-ebe8b2c2ca1">Multi-Class Metrics Made Simple, Part II: the F1-score</a></p>
+<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f">Micro, Macro &amp; Weighted Averages of F1 Score, Clearly Explained</a></p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2022/02/20/holiness/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            
+            var disqus_config = function () {
+                this.page.url = 'http://liuzz10.github.io/2022/03/18/micro-f1/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '2022/03/18/micro-f1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.language = 'en'
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://joyblogs.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>   
+     
+    
+    
+
+</div>
+     
+  
+</article></div>
+      </div>
+
+      <div class="footer">
+  <div class="flex-container">
+    <div class="footer-text">
+        © 2021 Zhuozhuo Liu 
+      <!--      -->
+       &nbsp; | &nbsp; 我见青山多可爱，料青山见我应如是 
+    </div>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>
