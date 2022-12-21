@@ -160,7 +160,7 @@
     <div class="post-content">
     <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/container-with-most-water/">Puzzle link</a></p>
 <p>Given n non-negative integers a1, a2, …, an, where each represents a point at coordinate (i, ai). n vertical lines are drawn such that the two endpoints of line i is at (i, ai) and (i, 0). Find two lines, which together with x-axis forms a container, such that the container contains the most water.</p>
-<p><img src="lc-11-container/question.jpg" alt="problem"></p>
+<p><img src="/.io//question.jpg" alt="problem"></p>
 <h1 id="Idea-1-Brute-force"><a href="#Idea-1-Brute-force" class="headerlink" title="Idea 1: Brute force"></a>Idea 1: Brute force</h1><ol>
 <li>Calculate the area of all possible containers S(i, j). Here, S(i, j)=min(i, j)*(j-i).</li>
 <li>We need to use two pointers: i, j. When i=1，j moves from the integer next to i, which is 2, to the end, which is n. Calculate S(i, j)。Then, i moves to the next integer which is 2. j starts from i+1 to n. Repeatedly doing this until i reach n-1.</li>

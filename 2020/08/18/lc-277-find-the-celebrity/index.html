@@ -187,7 +187,7 @@
 </ul>
 <p>After running up all numbers, we will get a final candidate X. Also we know that, if a celebrity exists, it must be X.</p>
 <p>Here is a tree that demonstrates all possible paths. At each level we will add a new number to compare with, so the height/time cost is theta(n).</p>
-<p><img src="LC277.png"></p>
+<p><img src="/.io//LC277.png"></p>
 <p>Are we done? No. This final candidate X is just our best guess! Remember to check if X is the real celebrity.</p>
 <p>Why? Because in the problem statement, “There will be exactly one celebrity if he/she is in the party…If there is no celebrity, return -1.”. It’s possible that there’s no celebrity.</p>
 <p>Since we only compared the final candidate X once, we don’t know the relationship between X and other numbers. Since there can be no celebrity, maybe X is not. We trust X just because other numbers are definitely not!</p>

@@ -159,7 +159,7 @@
 </div>
     <div class="post-content">
     <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/">Puzzle link</a></p>
-<p><img src="LC134-question.png"></p>
+<p><img src="/.io//LC134-question.png"></p>
 <p>There are N gas stations along a circular route, where the amount of gas at station i is gas[i].</p>
 <p>You have a car with an unlimited gas tank and it costs cost[i] of gas to travel from station i to its next station (i+1). You begin the journey with an empty tank at one of the gas stations.</p>
 <p>Return the starting gas station’s index if you can travel around the circuit once in the clockwise direction, otherwise return -1.</p>
@@ -178,21 +178,21 @@
 <h3 id="Simplify-the-code"><a href="#Simplify-the-code" class="headerlink" title="Simplify the code"></a>Simplify the code</h3><p>With this property, we can check at the very beginning (or at the end). </p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; gas.length; i++) &#123;</span><br><span class="line">            totalGas += gas[i];</span><br><span class="line">            totalCost += cost[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// If total gas doesn&#x27;t cover total cost, it doesn&#x27;t work out and we return -1.</span></span><br><span class="line">        <span class="keyword">if</span> (totalGas &lt; totalCost) &#123;</span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br></pre></td></tr></table></figure>
 
-<h2 id="Property-2-If-path-i-gt-j-failed-it-will-also-fail-if-we-start-with-any-station-between-i-and-j"><a href="#Property-2-If-path-i-gt-j-failed-it-will-also-fail-if-we-start-with-any-station-between-i-and-j" class="headerlink" title="Property 2. If path(#i -&gt; #j) failed, it will also fail if we start with any station between #i and #j."></a>Property 2. If path(#i -&gt; #j) failed, it will also fail if we start with any station between #i and #j.</h2><p><img src="LC134-p2.png"></p>
+<h2 id="Property-2-If-path-i-gt-j-failed-it-will-also-fail-if-we-start-with-any-station-between-i-and-j"><a href="#Property-2-If-path-i-gt-j-failed-it-will-also-fail-if-we-start-with-any-station-between-i-and-j" class="headerlink" title="Property 2. If path(#i -&gt; #j) failed, it will also fail if we start with any station between #i and #j."></a>Property 2. If path(#i -&gt; #j) failed, it will also fail if we start with any station between #i and #j.</h2><p><img src="/.io//LC134-p2.png"></p>
 <p>Consider this graph as an example: if we start from #1: </p>
 <ul>
 <li>path(#1 -&gt; #3) is successful</li>
 <li>path(#3 -&gt; #4) fails</li>
 </ul>
 <p>With the brute force idea, if #1 doesn’t work out we have to start with #2 to check. Is it necessary? No. We don’t have to check from #2 because we’ve known that it won’t pass #4.</p>
-<p><img src="LC134-p2-2.png"></p>
+<p><img src="/.io//LC134-p2-2.png"></p>
 <p>Why? Starting from #2 can be equal to starting from #1, adding 1 gas at #1 (originally gas = 2 at #1). That equals to, #1 doesn’t provide us any benefits. </p>
 <p>We knew that path(#1 -&gt; #4) fails. That’s being said, even if #1 provides us some extra benefits to let us have gas remaining when arriving at #2, that gas doesn’t sustain us to pass #4. </p>
 <p>Therefore, path(#2 -&gt; #4) wouldn’t work. We can prove in contradiction. If it works, path(#1 -&gt; #4) should work as well because #1 may provide extra gas for the trip which contradicts with the assumption “path(#1 -&gt; #4) fails”.</p>
 <h3 id="Simplify-the-code-1"><a href="#Simplify-the-code-1" class="headerlink" title="Simplify the code"></a>Simplify the code</h3><p>With this property, we further conclude that, once we find a failed path(#i -&gt; #j), we can set up the starting point from the next point #j+1. In the code, <code>start = i+1</code>.</p>
 <h2 id="Property-3-With-enough-total-gas-if-there’s-a-successful-path-X-gt-last-station-starting-point-X-must-be-valid-no-need-to-loop-back-to-check"><a href="#Property-3-With-enough-total-gas-if-there’s-a-successful-path-X-gt-last-station-starting-point-X-must-be-valid-no-need-to-loop-back-to-check" class="headerlink" title="Property 3. With enough total gas, if there’s a successful path(#X -&gt; #last station), starting point #X must be valid (no need to loop back to check)."></a>Property 3. With enough total gas, if there’s a successful path(#X -&gt; #last station), starting point #X must be valid (no need to loop back to check).</h2><p>That’s being said, if we find a starting point X that can reach the last station, we don’t have to loop back to check stations before X. The gas will always be enough to cover the rest trip (in this example, #5 is the last station but may not be the last one in the route because the starting point is not always #1).</p>
 <p>It sounds unbelievable. Let’s prove. In this graph, the whole route is divided by green section path(#X -&gt; #n) and blue section path(#n -&gt; #X-1). We want to prove that if the green section works, the blue section must work.</p>
-<p><img src="LC134-p3.png"></p>
+<p><img src="/.io//LC134-p3.png"></p>
 <h3 id="Notations"><a href="#Notations" class="headerlink" title="Notations"></a>Notations</h3><ul>
 <li>#X = starting point</li>
 <li>#n = last station in alphabetics</li>
@@ -217,7 +217,7 @@
     k + $\sum_{i=n}^{X-1} gas[i]$ >= $\sum_{i=n}^{X-1} cost[i]$
     
 (If the above doesn't format, see the image below.) -->
-<p><img src="LC134-proof-sigma.png"></p>
+<p><img src="/.io//LC134-proof-sigma.png"></p>
 <p>This formula shows that the sum of x remaining gas at #n and the gas being added must be able to cover the cost during the blue section. Therefore, as long as the green section works, the blue section must work.</p>
 <h3 id="Simplify-the-code-2"><a href="#Simplify-the-code-2" class="headerlink" title="Simplify the code"></a>Simplify the code</h3><p>With this property, we don’t have to circle around and check the stations in front of the starting point. So the loop is <code>for (int i = 0; i &lt; gas.length; i++)</code>.</p>
 <p>Note: This article was originally published <a target="_blank" rel="noopener" href="https://leetcode.com/problems/gas-station/discuss/805989/brute-force-one-pass-step-by-step-explanationwith-proof-graph-and-code-beginners-friendly">here</a></p>
