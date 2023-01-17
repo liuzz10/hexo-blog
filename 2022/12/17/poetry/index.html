@@ -28,7 +28,7 @@
 
 
 
-<title>Understanding sum(FP) and sum(FN) in the context of micro-F1 score | Hexo</title>
+<title>远方的诗，诗在远方 | Hexo</title>
 
 
 
@@ -127,14 +127,14 @@
             
                 
                     <span class="post-tag">
-                        <a href="/tags/statistics/">
-                            statistics
+                        <a href="/tags/%E4%B8%AD%E6%96%87/">
+                            中文
                         </a>
                     </span>    
                 
                     <span class="post-tag">
-                        <a href="/tags/course/">
-                            course
+                        <a href="/tags/poetry/">
+                            poetry
                         </a>
                     </span>    
                            
@@ -143,12 +143,12 @@
         <div class="post-title">
             
             
-                Understanding sum(FP) and sum(FN) in the context of micro-F1 score
+                远方的诗，诗在远方
             
             
         </div>
         <span class="post-date">
-            Mar 18, 2022
+            Dec 17, 2022
         </span>
     </div>
     <div class="post-img">
@@ -158,18 +158,24 @@
     </div>
 </div>
     <div class="post-content">
-    <p>In my presentation on a data mining class today, a peer mentioned a thoughtful question about the micro-F1 score (see the screenshot below) - <strong>the sum of FP and the sum of FN looks equal, are they always equal? If yes, why calculate twice?</strong></p>
-<p><img src="/.io//slide.png" alt="figure 1. A slide of my presentation explaining microaveraged F1 score"></p>
-<p>The question is interesting and here’s my thought after some research and thinking. I think it can be generalized to <strong>“for any confusion matrix, the sum of FP is equal to the sum of FN”</strong>. In other words,</p>
-<p>$$sum(FP1,…,FPn) = sum(FN1,…,FNn) = sum(all) - sum(diagonals)$$</p>
-<p>In the screenshot, sum(all) refers to all numbers. sum(diagonals) refers to the sum of numbers in green boxes. sum(FP1,…,FPn) or sum(FN1,…,FNn) refers to the sum of numbers in red boxes.</p>
-<p>It’s easy to prove it mathematically, but how to understand the equality? An intuitive way thinking about it is that, <strong>since they are all False, a FP of something is the FN of another thing.</strong> For example, for an orange that’s falsely predicted as an apple, it contributes both to the FP of class Apple and to the FN of class Orange. So for every False prediction, it will contribute to the sum of FP and the sum of FN at the same time. Therefore, the sum should always be the same.</p>
-<p>As a result, you might also find the following equation is true. That’s why micro-F1 is usually mentioned alone comparing to macro-F1 which usually mentioned together with macro-precision and macro-recall.</p>
-<p>$$micro_F1 = accuracy = micro_precision = micro_recall$$</p>
-<p>But why both terms appear in the expression/formula of micro-F1? I’m not sure the actual reason behind. From my perspective, I think although values are the same, their meaning are different. I don’t think we have to calculate it twice but they appear in the expression probably since they have their own meaning and, moreover, can be corresponding to the single F1 score which can be expressed by TP, FP and FN as well. This is my guess. I think at the implementation-level we probably could just calculate it once and reuse that number.</p>
-<p>Here are some readings that may be helpful:</p>
-<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/multi-class-metrics-made-simple-part-ii-the-f1-score-ebe8b2c2ca1">Multi-Class Metrics Made Simple, Part II: the F1-score</a></p>
-<p><a target="_blank" rel="noopener" href="https://towardsdatascience.com/micro-macro-weighted-averages-of-f1-score-clearly-explained-b603420b292f">Micro, Macro &amp; Weighted Averages of F1 Score, Clearly Explained</a></p>
+    <p><em>当年，王步高老师的“诗词格律与创作”课火爆到全校都在选课，然而只有 40 个人能选上。也不知道我是扶了多少次老奶奶过马路，才攒来这样的人品，在大三和好朋友肖潇双双选上了这门课，从此爱上了古诗词、爱上了南京口音、也开启了每周创作一首诗的魔咒当中。现在看来，当时的人生阅历极其有限，无非是写景、思乡、再大一点就是人生抱负不能再多了。10 年过去了，从一个风花雪月的“文科生”，变成了增删改查的程序员；从平仄押韵变成了变量循环；从想要拯救全世界到忙不迭地解救自己。没什么好，也没什么不好。只是觉得应该把那些诗情画意的点滴积攒起来，好在以后漫长的人生中细细回味。</em></p>
+<p>绝句</p>
+<p>万水千山乘风来，<br>潇潇洒洒绝尘埃。<br>平生只恋故乡雪，<br>下遍他乡无情街。</p>
+<p>==================</p>
+<p>秋夜喜雪</p>
+<p>老酿黄花酒，新煨小枣羹。<br>夜深风愈冷，大雪不饶城。</p>
+<p>秋吟</p>
+<p>诗心莫把秋心负，<br>谁道西风总断肠？<br>鸟尽云飞天气爽，<br>纷纷绿叶化红妆。</p>
+<p>校河思乡（其一）</p>
+<p>沱江翻浪岷江平，一去十年不复寻。<br>犹记红梅经霜好，不疑春色羡鸟吟。<br>寒鸦点点千山远，人海茫茫一客心。<br>天意怜予离恨苦，鹧鸪故遣作乡音。</p>
+<p>意难平</p>
+<p>楚天飞不尽，悲鸟咽三江。<br>水洗乾坤彻，凌风一夜长。<br>孤星观日月，老树薄新霜。<br>对酒当歌浅，沽名事君王！</p>
+<p>校河思乡（其二）</p>
+<p>幼时偏爱田间事，饭好呼归每日斜。<br>最羡牛童卧柳荫，也随白发戏鱼虾。<br>青波不觉乌泥改，故水应生芦苇花。<br>且把归思托锦鲤，蜀江深处是吾家！</p>
+<p>临江仙·京城大雪</p>
+<p>雪霁初晴微冷，京城一片朝辉。小园风起玉花吹。才知湿了发，却看鹊双飞。<br>萧索残凉冬景，几番旧梦难追。留余长叹事皆非。两行清泪下，回见几枝梅。</p>
+<p>青玉案·二校门</p>
+<p>潇潇黄叶经风舞。彩云里、清华路。<br>寂静喧嚣都一处。<br>风华犹在，应知今古，冷月梧桐树。<br>人间正道多歧误，且待明朝笑风雨。<br>一片冰心君记否？<br>休将青发，营营换取，一把功名土！</p>
 
 </div> 
 
@@ -183,7 +189,7 @@
            
                 <div class="icon arrow-left"></div>
                 <div class="post-link">
-                    <a href="/2022/12/17/poetry/">Prev</a>
+                    <a href="/2022/12/19/meizhongbuzu/">Prev</a>
                 </div>
             
         </div>
@@ -191,7 +197,7 @@
             
                 <div class="icon arrow-right"></div>
                 <div class="post-link">
-                  <a href="/2022/02/20/holiness/">Next</a>  
+                  <a href="/2022/03/18/micro-f1/">Next</a>  
                 </div>  
             
         </div>
@@ -211,8 +217,8 @@
             *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
             
             var disqus_config = function () {
-                this.page.url = 'http://liuzz10.github.io/2022/03/18/micro-f1/';  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = '2022/03/18/micro-f1/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.page.url = 'http://liuzz10.github.io/2022/12/17/poetry/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '2022/12/17/poetry/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
                 this.language = 'en'
             };
             
