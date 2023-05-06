@@ -2,7 +2,7 @@
 language: en
 
 # header
-site_brand_name: Zhuozhuo's blog
+site_brand_name: Joy Liu's blog
 
 logo_image:
   enable: false
@@ -29,20 +29,20 @@ date_format: MMM D, YYYY
 
 # profile
 profile:
-  title: Hi, this is Joy Liu.
-  body: A personal blog about programming and interesting books.
+  title: Hi, this is Zhuozhuo Joy Liu.
+  body: A personal blog about programming, interesting books and ideas.
   image: /wheatfield.png
 
   links:
     # Home: /
     Archive: /archives/
-    Books to Read in 2022: /2021/12/22/2022-books-to-read/
+    A difficult decision for the future: /2023/02/02/layoff-letter/
 
 # footer
 footer:
   copyright_info:
     enable: true
-    author: © 2021 Zhuozhuo Liu
+    author: © 2023 Zhuozhuo Joy Liu
 
   powered_by: # Powered by Hexo & Frame
     enable: false
