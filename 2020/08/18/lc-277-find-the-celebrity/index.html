@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GB7VQMP377"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-GB7VQMP377');
+    </script>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>LC-277 Find the Celebrity | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<script src='https://unpkg.com/valine@1.4.16/dist/Valine.min.js'></script>
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    <div class="mask-border"></div>
+
+    <div class="wrapper">
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Joy Liu&#39;s blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tags</a>
+              </li> 
+                   
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container"><article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/leetcode/">
+                            leetcode
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/interview/">
+                            interview
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                LC-277 Find the Celebrity
+            
+            
+        </div>
+        <span class="post-date">
+            Aug 18, 2020
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/find-the-celebrity/">Puzzle link</a></p>
+<p>Suppose you are at a party with n people (labeled from 0 to n - 1) and among them, there may exist one celebrity. The definition of a celebrity is that all the other n - 1 people know him/her but he/she does not know any of them.</p>
+<p>Now you want to find out who the celebrity is or verify that there is not one. The only thing you are allowed to do is to ask questions like: “Hi, A. Do you know B?” to get information of whether A knows B. You need to find out the celebrity (or verify there is not one) by asking as few questions as possible (in the asymptotic sense).</p>
+<p>You are given a helper function bool knows(a, b) which tells you whether A knows B. Implement a function int findCelebrity(n). There will be exactly one celebrity if he/she is in the party. Return the celebrity’s label if there is a celebrity in the party. If there is no celebrity, return -1.</p>
+<h1 id="Idea-1-Brute-Force"><a href="#Idea-1-Brute-Force" class="headerlink" title="Idea 1: Brute Force"></a>Idea 1: Brute Force</h1><p>For each number i, we need to check if i is a celebrity or not. How to check? We check all knows(i, j) where j from 0 to n. Only when all pairs of knows(i, j) == 0 &amp;&amp; all pairs of knows(j, i) ==1, we know i is a celebrity. Otherwise, i is not a celebrity.</p>
+<h2 id="Time-cost"><a href="#Time-cost" class="headerlink" title="Time cost"></a>Time cost</h2><p>T(n) = O(n^2), since we need to check n numbers, and for each number we need to pair it with n-1 numbers to check. Another way to think about it is to check all n^2 pairs of knows(i, j).</p>
+<h1 id="Idea-2-Linear-Elimination"><a href="#Idea-2-Linear-Elimination" class="headerlink" title="Idea 2: Linear Elimination"></a>Idea 2: Linear Elimination</h1><p>Do we need to check all pairs of knows(i, j)? We don’t.</p>
+<p>If i knows j, that means i is not the celebrity because a celebrity doesn’t know anyone. So we can eliminate i.</p>
+<p>If i doesn’t know j, that means j is not the celebrity because everyone knows the celebrity. So we can eliminate j.</p>
+<p>If you understand the above, you know two properties of celebrity:</p>
+<ul>
+<li>Property 1. If knows(i, j) = 1, i is not the celebrity.</li>
+<li>Property 2. If knows(i, j) = 0, j is not the celebrity.</li>
+</ul>
+<p>We will, and only will, get two results: 0 or 1 after calling <code>knows</code>. So with each call to <code>knows(i, j)</code>, we can eliminate a non-celebrity from n.</p>
+<h2 id="Algorithm"><a href="#Algorithm" class="headerlink" title="Algorithm"></a>Algorithm</h2><p>Based on the above analysis, we design the algorithm below:</p>
+<p><strong>Step 1</strong><br>Base case: i = 0, j = 1. We check knows(0, 1) and determine a potential candidate.</p>
+<ul>
+<li>If knows(0, 1) = 1, j is the potential candidate.</li>
+<li>If knows(0, 1) = 0, i is the potential candidate.</li>
+</ul>
+<p><strong>Step 2</strong><br>After determining a candidate between 0 and 1, we need to compare the winning candidate with a 3rd number. Therefore, we need a for loop to always go to the next number so that the candidate can compare to.</p>
+<p>For loop where j traverses all numbers:</p>
+<ul>
+<li><code>if knows(candidate, j) == 1</code> we eliminate the current candidate and set <code>candidate = j</code>.</li>
+<li><code>if knows(candidate, j) == 0</code> we eliminate j and keep the current candidate.</li>
+</ul>
+<p>After running up all numbers, we will get a final candidate X. Also we know that, if a celebrity exists, it must be X.</p>
+<p>Here is a tree that demonstrates all possible paths. At each level we will add a new number to compare with, so the height/time cost is theta(n).</p>
+<p><img src="/.io//LC277.png"></p>
+<p>Are we done? No. This final candidate X is just our best guess! Remember to check if X is the real celebrity.</p>
+<p>Why? Because in the problem statement, “There will be exactly one celebrity if he/she is in the party…If there is no celebrity, return -1.”. It’s possible that there’s no celebrity.</p>
+<p>Since we only compared the final candidate X once, we don’t know the relationship between X and other numbers. Since there can be no celebrity, maybe X is not. We trust X just because other numbers are definitely not!</p>
+<p>So, we need one more step to check X:</p>
+<p><strong>Step 3</strong><br>Check if knows(final candidate, k) == 0 &amp;&amp; knows(k, final candidate) == 1. If true, it is the real celebrity that we are looking for.</p>
+<h2 id="Time-cost-1"><a href="#Time-cost-1" class="headerlink" title="Time cost"></a>Time cost</h2><p>Therefore, T(n)=O(n). For step 1&amp;2, T(n)=O(n) because the height of the tree is theta(n). For step 3, T(n)=O(n) because we will only need to compare with other n-1 numbers twice, (i, j) and (j, i).</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Solution</span> <span class="keyword">extends</span> <span class="title">Relation</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">findCelebrity</span><span class="params">(<span class="keyword">int</span> n)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// Compare and eliminate one that is not celebrity. Compare with the next number until reaching the last number.</span></span><br><span class="line">        <span class="keyword">int</span> candidate = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt; n; j++)</span><br><span class="line">            <span class="keyword">if</span> (knows(candidate, j)) &#123;</span><br><span class="line">                candidate = j; <span class="comment">// We get a final candidate by linear comparison</span></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// Check if the final candidate is the celebrity</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> k = <span class="number">0</span>; k &lt; n; k++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (candidate == k) <span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span> (knows(candidate, k) || !knows(k, candidate)) &#123; <span class="comment">// If it knows someone, or someone doesn&#x27;t know it, it&#x27;s not a celebrity</span></span><br><span class="line">                <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> candidate;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2020/09/09/lc-134-gas-station/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2018/11/04/thoughts-after-layoff/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            
+            var disqus_config = function () {
+                this.page.url = 'http://liuzz10.github.io/2020/08/18/lc-277-find-the-celebrity/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '2020/08/18/lc-277-find-the-celebrity/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.language = 'en'
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://joyblogs.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>   
+     
+    
+    
+
+</div>
+     
+  
+</article></div>
+      </div>
+
+      <div class="footer">
+  <div class="flex-container">
+    <div class="footer-text">
+        © 2023 Zhuozhuo Joy Liu 
+      <!--      -->
+       
+    </div>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

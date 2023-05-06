@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GB7VQMP377"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-GB7VQMP377');
+    </script>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>How to Add Google Analytics to Hexo Site of Any Theme (2021) | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<script src='https://unpkg.com/valine@1.4.16/dist/Valine.min.js'></script>
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    <div class="mask-border"></div>
+
+    <div class="wrapper">
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Joy Liu&#39;s blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tags</a>
+              </li> 
+                   
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container"><article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/blogging/">
+                            blogging
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/programming/">
+                            programming
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                How to Add Google Analytics to Hexo Site of Any Theme (2021)
+            
+            
+        </div>
+        <span class="post-date">
+            Dec 30, 2021
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <p>Since Google Analytics(GA) changed the layout, some tutorials are too old to follow. So I’m writing an up-to-date one.</p>
+<h1 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h1><p>You should have installed Hexo and had the site deployed already (so you should have a site url).</p>
+<p>Not sure how to use Hexo and deploy to GitHub Pages? Follow this <a target="_blank" rel="noopener" href="https://gist.github.com/btfak/18938572f5df000ebe06fbd1872e4e39">tutorial</a>.</p>
+<h1 id="Instructions"><a href="#Instructions" class="headerlink" title="Instructions"></a>Instructions</h1><h2 id="Firstly-let-GA-know-the-site-url"><a href="#Firstly-let-GA-know-the-site-url" class="headerlink" title="Firstly, let GA know the site url."></a>Firstly, let GA know the site url.</h2><ol>
+<li><p>Create an GA account. Google the instruction and it’s pretty easy to follow. Make sure that you entered the site url so that Google Analytics knows what site to track.</p>
+</li>
+<li><p>Go to Admin (bottom left corner) &gt; Data Streams. You should see the site url that you entered. Click on it.</p>
+</li>
+</ol>
+<p><img src="/.io//hexo1.jpg" alt="hexo1"></p>
+<ol start="3">
+<li>Go to Tagging Instructions &gt; Add new on-page tag &gt; Global site tag (gtag.js).</li>
+</ol>
+<p><img src="/.io//hexo2.jpg" alt="hexo2"></p>
+<ol start="4">
+<li>Copy all the code provided.</li>
+</ol>
+<p><img src="/.io//hexo3.jpg" alt="hexo3"></p>
+<h2 id="Secondly-let-the-site-know-GA"><a href="#Secondly-let-the-site-know-GA" class="headerlink" title="Secondly, let the site know GA."></a>Secondly, let the site know GA.</h2><ol>
+<li><p>Go to your Hexo code. Under your template’s folder, find <code>layout.ejs</code>.</p>
+</li>
+<li><p>Paste the site tag code in <code>&lt;head&gt;&lt;/head&gt;</code> and make sure it’s on the top of other code in <code>&lt;head&gt;&lt;/head&gt;</code>.</p>
+</li>
+</ol>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;&lt;%=config.language%&gt;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- Global site tag (gtag.js) - Google Analytics --&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span></span></span><br><span class="line"><span class="tag">      <span class="attr">async</span></span></span><br><span class="line"><span class="tag">      <span class="attr">src</span>=<span class="string">&quot;https://www.googletagmanager.com/gtag/js?id=XXXXX&quot;</span></span></span><br><span class="line"><span class="tag">    &gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      <span class="built_in">window</span>.dataLayer = <span class="built_in">window</span>.dataLayer || [];</span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">gtag</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">        dataLayer.push(<span class="built_in">arguments</span>);</span></span><br><span class="line"><span class="javascript">      &#125;</span></span><br><span class="line"><span class="javascript">      gtag(<span class="string">&#x27;js&#x27;</span>, <span class="keyword">new</span> <span class="built_in">Date</span>());</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">      gtag(<span class="string">&#x27;config&#x27;</span>, <span class="string">&#x27;XXXXX&#x27;</span>);</span></span><br><span class="line"><span class="javascript">    </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!-- other stuff in header --&gt;</span></span><br><span class="line">    ...</span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span>...<span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Finally…"><a href="#Finally…" class="headerlink" title="Finally…"></a>Finally…</h2><p>You can do <code>hexo clean</code>, <code>hexo deploy</code> to deploy it. It’s just this simple! Make sure that you verify it by checking the report dashboard on GA.</p>
+<p><strong>Reference</strong><br><a target="_blank" rel="noopener" href="https://jiwonyeom.github.io/2017/10/09/google-analytics-on-hexo/">https://jiwonyeom.github.io/2017/10/09/google-analytics-on-hexo/</a><br><a target="_blank" rel="noopener" href="https://www.codeblocq.com/2015/12/Add-Google-Analytics-to-your-hexo-blog/">https://www.codeblocq.com/2015/12/Add-Google-Analytics-to-your-hexo-blog/</a></p>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2022/01/23/heap/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2021/12/29/doctrine-of-repentance-3/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            
+            var disqus_config = function () {
+                this.page.url = 'http://liuzz10.github.io/2021/12/30/how-to-start-hexo/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '2021/12/30/how-to-start-hexo/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.language = 'en'
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://joyblogs.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>   
+     
+    
+    
+
+</div>
+     
+  
+</article></div>
+      </div>
+
+      <div class="footer">
+  <div class="flex-container">
+    <div class="footer-text">
+        © 2023 Zhuozhuo Joy Liu 
+      <!--      -->
+       
+    </div>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>

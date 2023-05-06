@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-GB7VQMP377"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+
+      gtag('config', 'G-GB7VQMP377');
+    </script>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="John Doe">
+
+
+
+
+
+
+
+<title>LC-211 Maximal Square | Hexo</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;700&family=Roboto+Mono&display=swap');
+</style>
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/frame.js"></script>
+    
+
+
+
+
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+
+
+<script src='https://unpkg.com/valine@1.4.16/dist/Valine.min.js'></script>
+
+
+
+  <!-- hexo injector head_end start -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/katex.min.css">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/hexo-math@4.0.0/dist/style.css">
+<!-- hexo injector head_end end --><meta name="generator" content="Hexo 5.4.0"></head>
+  <body>
+    <div class="mask-border"></div>
+
+    <div class="wrapper">
+      <div class="header">
+  <div class="flex-container">
+    <div class="header-inner">
+      <div class="site-brand-container">
+        <a href="/">
+          
+            Joy Liu&#39;s blog
+          
+        </a>
+      </div>
+      <div id="menu-btn" class="menu-btn" onclick="toggleMenu()">
+        Menu
+      </div>
+      <nav class="site-nav">
+        <ul class="menu-list">
+          
+            
+              <li class="menu-item">
+                <a href="/">Home</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/archives/">Archive</a>
+              </li> 
+                   
+          
+            
+              <li class="menu-item">
+                <a href="/tag/">Tags</a>
+              </li> 
+                   
+          
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+      <div class="main">
+        <div class="flex-container"><article id="post">
+
+  
+    <div class="post-head">
+    <div class="post-info">
+        <div class="tag-list">
+            
+                
+                    <span class="post-tag">
+                        <a href="/tags/leetcode/">
+                            leetcode
+                        </a>
+                    </span>    
+                
+                    <span class="post-tag">
+                        <a href="/tags/interview/">
+                            interview
+                        </a>
+                    </span>    
+                           
+            
+        </div>
+        <div class="post-title">
+            
+            
+                LC-211 Maximal Square
+            
+            
+        </div>
+        <span class="post-date">
+            Feb 9, 2021
+        </span>
+    </div>
+    <div class="post-img">
+        
+            <div class="h-line-primary"></div>
+              
+    </div>
+</div>
+    <div class="post-content">
+    <h1 id="Problem"><a href="#Problem" class="headerlink" title="Problem"></a>Problem</h1><p><a target="_blank" rel="noopener" href="https://leetcode.com/problems/maximal-square/">Puzzle link</a></p>
+<p>Given an m x n binary matrix filled with 0’s and 1’s, find the largest square containing only 1’s and return its area.</p>
+<h1 id="Idea-amp-Explanation"><a href="#Idea-amp-Explanation" class="headerlink" title="Idea &amp; Explanation"></a>Idea &amp; Explanation</h1><p><strong>What I learnt: dp[][] table doesn’t have to contain the direct result.</strong></p>
+<p>Normally in a dp problem, the dp table contains everything we need so we can simply return the value in the corner (e.g., <code>dp[m][n]</code>).</p>
+<p>Therefore, my first attempt is to generate a 2D table where each cell represents “the area of the largest squre up to this point”. For example, I managed to use <code>dp[i][j]</code> to represent the max area of the squre given an <code>i * j</code> matrix. In the end, I can just return <code>dp[m][n]</code> as the result.</p>
+<p>Sounds good. However, it added too much complexity. Why?</p>
+<p>Because by getting and entering the <code>max</code> value into <code>dp[i][j]</code>, it may erase the pattern of the original matrix. Therefore, I can’t trust the dependency anymore.</p>
+<p>For example, we are given two different matrix:</p>
+<p>matrix 1:<br>10<br>01</p>
+<p>dp table:<br>11<br>12</p>
+<p>matrix 2:<br>11<br>11</p>
+<p>dp table:<br>11<br>12</p>
+<p>By using my stretegy, resulting dp tables will be the same. Because by getting <code>max</code>, I ignore all the defections which should not be ignored.</p>
+<p>Therefore, I need a 2D table to honestly record everything. And I maintain a <code>max</code> beside the table.</p>
+<p>This is what an optimized solution is trying to do. It calculates the <code>max</code> of <code>min</code>. For the <code>max</code> part, it uses a variable to get. For the <code>min</code> part, it uses dp table to get. Each cell <code>dp[i][j]</code> represents: if I have to use element <code>matrix[i][j]</code> to form a squre in the bottom right corner, how large a squre can be. This is hard to think about, but after coming up with it, the rest is easy.</p>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">maximalSquare</span>(<span class="params">self, matrix: <span class="type">List</span>[<span class="type">List</span>[<span class="built_in">str</span>]]</span>) -&gt; <span class="built_in">int</span>:</span></span><br><span class="line">    r = <span class="built_in">len</span>(matrix)</span><br><span class="line">    c = <span class="built_in">len</span>(matrix[<span class="number">0</span>])</span><br><span class="line">    dp = [[<span class="number">0</span> <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(c+<span class="number">1</span>)] <span class="keyword">for</span> y <span class="keyword">in</span> <span class="built_in">range</span>(r+<span class="number">1</span>)]</span><br><span class="line">    res_max = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(r):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(c):</span><br><span class="line">            <span class="keyword">if</span> matrix[i][j] == <span class="string">&#x27;1&#x27;</span>:</span><br><span class="line">                dp[i+<span class="number">1</span>][j+<span class="number">1</span>] = <span class="built_in">min</span>(dp[i][j+<span class="number">1</span>], dp[i+<span class="number">1</span>][j], dp[i][j]) + <span class="number">1</span></span><br><span class="line">                res_max = <span class="built_in">max</span>(dp[i+<span class="number">1</span>][j+<span class="number">1</span>], res_max)</span><br><span class="line">    <span class="keyword">return</span> res_max * res_max</span><br></pre></td></tr></table></figure>
+
+</div> 
+
+<script>
+    window.onload = detectors();
+</script>
+    <div class="post-footer">
+    <div class="h-line-primary"></div>
+    <nav class="post-nav">
+        <div class="prev-item">
+           
+                <div class="icon arrow-left"></div>
+                <div class="post-link">
+                    <a href="/2021/03/03/lc-121-best-time-to-buy-and-sell-stock/">Prev</a>
+                </div>
+            
+        </div>
+        <div class="next-item">
+            
+                <div class="icon arrow-right"></div>
+                <div class="post-link">
+                  <a href="/2021/01/19/lc-78-subsets/">Next</a>  
+                </div>  
+            
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="post-comment">
+
+     
+
+    
+        <div id="disqus_thread"></div>
+        <script>
+            /**
+            *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+            *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+            
+            var disqus_config = function () {
+                this.page.url = 'http://liuzz10.github.io/2021/02/09/lc-211-maximal-square/';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = '2021/02/09/lc-211-maximal-square/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                this.language = 'en'
+            };
+            
+            (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://joyblogs.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+            })();
+        </script>
+        <noscript>Please enable JavaScript to view the <a target="_blank" rel="noopener" href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>   
+     
+    
+    
+
+</div>
+     
+  
+</article></div>
+      </div>
+
+      <div class="footer">
+  <div class="flex-container">
+    <div class="footer-text">
+        © 2023 Zhuozhuo Joy Liu 
+      <!--      -->
+       
+    </div>
+  </div>
+</div>
+
+    </div>
+  </body>
+</html>
